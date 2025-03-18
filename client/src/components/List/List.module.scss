@@ -1,0 +1,22 @@
+@use '../../sass/variables.scss' as v;
+
+.container {
+  width: 75%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+}
+
+.addEmployeePanel {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding: 4rem 0;
+  border-bottom: 1px solid v.$light-grey;
+
+  button {
+    padding: 0.6rem 1.2rem;
+    background-color: v.$light-grey;
+  }
+}

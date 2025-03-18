@@ -5,7 +5,7 @@ import classes from './ListPage.module.scss';
 const ListPage = () => {
   return (
     <div className={classes.container}>
-      <Header />
+      <Header page="list" />
       <List />
     </div>
   );

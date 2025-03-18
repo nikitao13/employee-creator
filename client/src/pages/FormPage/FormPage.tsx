@@ -5,7 +5,7 @@ import classes from './FormPage.module.scss';
 const FormPage = () => {
   return (
     <div className={classes.container}>
-      <Header />
+      <Header page="form" />
       <Form />
     </div>
   );
