@@ -1,6 +1,7 @@
 import Buttons from './Buttons';
 import classes from './Form.module.scss';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router';
 
 type Inputs = {
   firstName: string;
@@ -13,9 +14,19 @@ export default function Form() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log('Form submitted:', data);
+  };
+  const navigate = useNavigate();
+
+  const cancel = () => {
+    reset();
+    navigate('/');
+  };
 
   return (
     <div className={classes.container}>
@@ -52,7 +63,7 @@ export default function Form() {
           {errors.email && <span>Email is required</span>}
         </div>
 
-        <Buttons />
+        <Buttons onCancel={cancel} />
       </form>
     </div>
   );
