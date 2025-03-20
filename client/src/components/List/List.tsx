@@ -1,7 +1,16 @@
 import classes from './List.module.scss';
 import { useNavigate } from 'react-router';
+import { useEmployees } from '../../hooks/useEmployees';
 
 const List = () => {
+  const { data: employees, isSuccess } = useEmployees();
+
+  if (isSuccess) {
+    console.log(employees);
+  } else {
+    console.log('cannot fetch employees');
+  }
+
   const navigate = useNavigate();
   return (
     <div className={classes.container}>
@@ -14,4 +23,5 @@ const List = () => {
     </div>
   );
 };
+
 export default List;
