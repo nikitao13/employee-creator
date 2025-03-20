@@ -1,4 +1,4 @@
-# <u>Employee Creator Portal</u>
+# Employee Creator Portal
 
 ## An internal tool for creating, updating, and deleting employee data.
 
