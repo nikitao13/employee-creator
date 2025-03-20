@@ -2,21 +2,19 @@
 
 ## An internal tool for creating, updating, and deleting employee data.
 
----
+### Features:
 
-#### Features:
+#### - View current employee data
 
-##### - View current employee data
+#### - Modify existing employee data
 
-##### - Modify existing employee data
+#### - Delete existing employee data
 
-##### - Delete existing employee data
-
-##### - Create new employee data
+#### - Create new employee data
 
 ---
 
-#### Running the application:
+### Running the application:
 
 ---
 
