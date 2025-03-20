@@ -1,9 +1,12 @@
 package com.employeeportal.backend.Employee;
+
 import jakarta.persistence.*;
 
-@Entity@Table(name = "employees")
+@Entity
+@Table(name = "employees")
 public class Employee {
-  @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Column(name = "first_name", nullable = false)
@@ -18,21 +21,22 @@ public class Employee {
   @Column(name = "email", nullable = false, unique = true)
   private String email;
 
-  public Employee() {}
+  public Employee() {
+  }
 
   public Employee(String firstName, String middleName, String lastName, String email) {
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
     this.email = email;
-}
+  }
 
-public Employee(String firstName, String lastName, String email) {
+  public Employee(String firstName, String lastName, String email) {
     this.firstName = firstName;
-    this.middleName = null; 
+    this.middleName = null;
     this.lastName = lastName;
     this.email = email;
-}
+  }
 
   public Long getId() {
     return id;
@@ -63,8 +67,8 @@ public Employee(String firstName, String lastName, String email) {
   }
 
   public String getFullName() {
-    return (middleName == null || middleName.isBlank()) 
-        ? firstName + " " + lastName 
+    return (middleName == null || middleName.isBlank())
+        ? firstName + " " + lastName
         : firstName + " " + middleName + " " + lastName;
   }
 

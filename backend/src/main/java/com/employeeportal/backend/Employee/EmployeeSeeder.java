@@ -16,12 +16,11 @@ public class EmployeeSeeder implements CommandLineRunner {
     public void run(String... args) {
         if (employeeRepository.count() == 0) {
             List<Employee> employees = Arrays.asList(
-                new Employee("John", "Michael", "Doe", "john.doe@example.com"),
-                new Employee("Jane", null, "Smith", "jane.smith@example.com"),
-                new Employee("Robert", "James", "Brown", "robert.brown@example.com"),
-                new Employee("Emily", "Anne", "Davis", "emily.davis@example.com"),
-                new Employee("Michael", null, "Wilson", "michael.wilson@example.com")
-            );
+                    new Employee("John", "Michael", "Doe", "john.doe@example.com"),
+                    new Employee("Jane", null, "Smith", "jane.smith@example.com"),
+                    new Employee("Robert", "James", "Brown", "robert.brown@example.com"),
+                    new Employee("Emily", "Anne", "Davis", "emily.davis@example.com"),
+                    new Employee("Michael", null, "Wilson", "michael.wilson@example.com"));
 
             employeeRepository.saveAll(employees);
             System.out.println("Seeded employee data.");
