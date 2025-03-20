@@ -7,8 +7,6 @@ const List = () => {
 
   if (isSuccess) {
     console.log(employees);
-  } else {
-    console.log('cannot fetch employees');
   }
 
   const navigate = useNavigate();
