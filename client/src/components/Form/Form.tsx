@@ -21,6 +21,7 @@ type Inputs = {
   ongoing: boolean;
   timeBasis: string;
   hours: number;
+  fullName: string;
 };
 
 export default function Form() {
