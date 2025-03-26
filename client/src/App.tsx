@@ -6,6 +6,7 @@ import ListPage from './pages/ListPage/ListPage';
 const router = createBrowserRouter([
   { path: '/', element: <ListPage /> },
   { path: '/form', element: <FormPage /> },
+  { path: '/form/:id', element: <FormPage /> },
 ]);
 
 const queryClient = new QueryClient();

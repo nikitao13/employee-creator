@@ -1,0 +1,30 @@
+@use '../../../sass/variables' as v;
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid v.$light-grey;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.button {
+  padding: 0.3rem 0.6rem;
+  background-color: v.$light-grey;
+  font-size: 0.75rem;
+}
+
+.name {
+  font-weight: 700;
+}

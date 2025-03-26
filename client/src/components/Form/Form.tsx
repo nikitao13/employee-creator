@@ -1,13 +1,25 @@
+import { useEffect } from 'react';
+import { useEmployees } from '../../hooks/useEmployees';
+import { useAddEmployee } from '../../hooks/useAddEmployee';
+import { useUpdateEmployee } from '../../hooks/useUpdateEmployee';
 import Buttons from './Buttons';
 import classes from './Form.module.scss';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
+import { Employee } from '../../types/Employee';
 
 type Inputs = {
   firstName: string;
   middleName: string;
   lastName: string;
   email: string;
+  phone: string;
+  address: string;
+  contractType: string;
+  startDate: string;
+  finishDate: string;
+  timeBasis: string;
+  hours: number;
 };
 
 export default function Form() {
@@ -15,18 +27,55 @@ export default function Form() {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log('Form submitted:', data);
-  };
+  const { mutate: addEmployee } = useAddEmployee();
+  const { mutate: updateEmployee } = useUpdateEmployee();
+
   const navigate = useNavigate();
+  const { id } = useParams();
+  const { data: employees } = useEmployees();
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    if (!id) {
+      addEmployee(data, {
+        onSuccess: () => navigate('/'),
+        onError: (error) => {
+          alert('Error creating employee: ' + error);
+        },
+      });
+    } else {
+      updateEmployee(
+        { id: Number(id), data: { ...data, id: Number(id) } },
+        {
+          onSuccess: () => navigate('/'),
+          onError: (error) => {
+            alert('Error updating employee: ' + error);
+          },
+        }
+      );
+    }
+  };
 
   const cancel = () => {
     reset();
     navigate('/');
   };
+
+  const startVal = watch('startDate');
+
+  useEffect(() => {
+    if (id && employees) {
+      const existingEmployee = employees.find(
+        (emp: Employee) => emp.id === Number(id)
+      );
+      if (existingEmployee) {
+        reset(existingEmployee);
+      }
+    }
+  }, [id, employees, reset]);
 
   return (
     <div className={classes.container}>
@@ -41,7 +90,7 @@ export default function Form() {
           {errors.firstName && <span>First name is required</span>}
 
           <label htmlFor="middleName">Middle name (if applicable)</label>
-          <input {...register('middleName')} />
+          <input placeholder="-" {...register('middleName')} />
 
           <label htmlFor="lastName">Last name</label>
           <input
@@ -61,6 +110,111 @@ export default function Form() {
             {...register('email', { required: true })}
           />
           {errors.email && <span>Email is required</span>}
+
+          <label htmlFor="phone">Mobile number</label>
+          <p className={classes.disclaimer}>Must be an Australian number</p>
+          <input
+            className={classes.phone}
+            placeholder="0412 345 678"
+            type="tel"
+            {...register('phone', { required: true })}
+          />
+          {errors.phone && <span>Phone number is required</span>}
+
+          <label htmlFor="address">Residential Address</label>
+          <input
+            className={classes.address}
+            placeholder="123 Example St, Sydney NSW 2000"
+            type="address"
+            {...register('address', { required: true })}
+          />
+          {errors.address && <span>Address is required</span>}
+        </div>
+
+        <div className={classes.employeeStatus}>
+          <h2>Employee status</h2>
+          <p className={classes.contractP}>What is contract type?</p>
+          <label className={classes.contractLabel}>
+            <input
+              type="radio"
+              value="Permanent"
+              {...register('contractType', { required: true })}
+            />
+            Permanent
+          </label>
+
+          <label className={classes.contractLabel}>
+            <input
+              type="radio"
+              value="Contract"
+              {...register('contractType', { required: true })}
+            />
+            Contract
+          </label>
+          {errors.contractType && <span>Please select your contract type</span>}
+
+          <h3>Start date</h3>
+          <input
+            className={classes.dateField}
+            type="date"
+            {...register('startDate', { required: true })}
+          />
+          {errors.startDate && <span>{errors.startDate.message}</span>}
+
+          <h3>Finish date</h3>
+          <input
+            className={`${classes.dateField} ${classes.finishDateField}`}
+            type="date"
+            {...register('finishDate', {
+              required: true,
+              validate: (finishVal) => {
+                if (!startVal) {
+                  return true;
+                }
+                const startDate = new Date(startVal);
+                const finishDate = new Date(finishVal);
+                if (finishDate < startDate) {
+                  return 'Finish date cannot be before the start date.';
+                }
+                return true;
+              },
+            })}
+          />
+          {errors.finishDate && <span>{errors.finishDate.message}</span>}
+
+          <h3 className={classes.contractP}>
+            Is this on a full-time or part-time basis?
+          </h3>
+          <label className={classes.contractLabel}>
+            <input
+              type="radio"
+              value="fullTime"
+              {...register('timeBasis', { required: true })}
+            />
+            Full-time
+          </label>
+
+          <label className={classes.contractLabel}>
+            <input
+              type="radio"
+              value="partTime"
+              {...register('timeBasis', { required: true })}
+            />
+            Part-time
+          </label>
+          {errors.timeBasis && (
+            <span>Please select full-time or part-time</span>
+          )}
+
+          <div className={classes.hours}>
+            <h3>Hours per week</h3>
+            <input
+              className={classes.hoursField}
+              type="number"
+              {...register('hours', { required: true })}
+            />
+            {errors.hours && <span>Hours per week is required</span>}
+          </div>
         </div>
 
         <Buttons onCancel={cancel} />

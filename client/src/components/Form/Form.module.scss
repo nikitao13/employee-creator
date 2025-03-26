@@ -38,7 +38,7 @@ form {
   .contactDetails {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.6rem;
 
     .email {
       width: 40%;
@@ -46,11 +46,17 @@ form {
   }
 }
 
+.employeeStatus {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
 .buttonsContainer {
   display: flex;
   gap: 0.75rem;
   width: 100%;
-  margin: 3rem 0 3rem 0;
+  margin: 1.5rem 0 1.5rem 0;
 }
 
 .save,
@@ -60,3 +66,51 @@ form {
   padding: 0.6rem 3rem;
   background-color: v.$light-grey;
 }
+
+.phone {
+  width: 15%;
+}
+
+.address {
+  width: 40%;
+}
+
+.disclaimer {
+  font-size: 0.7rem;
+  margin-top: -0.5rem;
+  opacity: 0.75;
+}
+
+.contractP {
+  font-weight: 500;
+}
+
+.contractLabel {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.95rem;
+
+  input {
+    transform: scale(1.4);
+    margin-bottom: 0.25rem;
+  }
+}
+
+.dateField {
+  width: max-content;
+}
+
+.finishDateField {
+  margin-bottom: 1rem;
+}
+
+.hours {
+  margin-top: 0.5rem;
+}
+
+.hoursField {
+  width: 10%;
+  margin-top: 0.5rem;
+}
+
