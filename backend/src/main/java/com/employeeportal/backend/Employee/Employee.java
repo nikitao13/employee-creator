@@ -33,8 +33,11 @@ public class Employee {
   @Column(name = "startDate", nullable = false)
   private String startDate;
 
-  @Column(name = "finishDate", nullable = false)
+  @Column(name = "finishDate", nullable = true)
   private String finishDate;
+
+  @Column(name = "ongoing", nullable = true)
+  private Boolean ongoing;
 
   @Column(name = "timeBasis", nullable = false)
   private String timeBasis;
@@ -46,7 +49,7 @@ public class Employee {
   }
 
   public Employee(String firstName, String middleName, String lastName, String email, String phone, String address,
-      String contractType, String startDate, String finishDate, String timeBasis, Integer hours) {
+      String contractType, String startDate, String finishDate, Boolean ongoing, String timeBasis, Integer hours) {
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
@@ -56,12 +59,13 @@ public class Employee {
     this.contractType = contractType;
     this.startDate = startDate;
     this.finishDate = finishDate;
+    this.ongoing = ongoing;
     this.timeBasis = timeBasis;
     this.hours = hours;
   }
 
   public Employee(String firstName, String lastName, String email, String phone, String address, String contractType,
-      String startDate, String finishDate, String timeBasis, Integer hours) {
+      String startDate, String finishDate, Boolean ongoing, String timeBasis, Integer hours) {
     this.firstName = firstName;
     this.middleName = null;
     this.lastName = lastName;
@@ -71,6 +75,7 @@ public class Employee {
     this.contractType = contractType;
     this.startDate = startDate;
     this.finishDate = finishDate;
+    this.ongoing = ongoing;
     this.timeBasis = timeBasis;
     this.hours = hours;
   }
@@ -155,6 +160,14 @@ public class Employee {
 
   public void setFinishDate(String finishDate) {
     this.finishDate = finishDate;
+  }
+
+  public Boolean getOngoing() {
+    return ongoing;
+  }
+
+  public void setOngoing(Boolean ongoing) {
+    this.ongoing = ongoing;
   }
 
   public String getTimeBasis() {

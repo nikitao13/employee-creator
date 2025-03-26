@@ -25,7 +25,8 @@ public class EmployeeSeeder implements CommandLineRunner {
                             "123 Example St",
                             "Permanent",
                             "2023-01-01",
-                            "2024-01-01",
+                            "",
+                            true,
                             "fullTime",
                             40),
                     new Employee(
@@ -37,7 +38,8 @@ public class EmployeeSeeder implements CommandLineRunner {
                             "456 Another Rd",
                             "Contract",
                             "2023-03-15",
-                            "2023-09-15",
+                            "2024-09-15",
+                            false,
                             "partTime",
                             24),
                     new Employee(
@@ -49,7 +51,8 @@ public class EmployeeSeeder implements CommandLineRunner {
                             "789 Main St",
                             "Permanent",
                             "2023-06-01",
-                            "2025-06-01",
+                            "",
+                            true,
                             "fullTime",
                             38),
                     new Employee(
@@ -61,7 +64,8 @@ public class EmployeeSeeder implements CommandLineRunner {
                             "12 Davis Ln",
                             "Contract",
                             "2023-02-28",
-                            "2023-10-15",
+                            "2025-10-15",
+                            false,
                             "partTime",
                             20),
                     new Employee(
@@ -73,7 +77,8 @@ public class EmployeeSeeder implements CommandLineRunner {
                             "400 Wilson Ave",
                             "Permanent",
                             "2023-05-10",
-                            "2024-05-09",
+                            "",
+                            true,
                             "fullTime",
                             40));
 

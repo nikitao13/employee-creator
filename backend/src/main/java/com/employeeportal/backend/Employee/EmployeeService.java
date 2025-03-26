@@ -32,6 +32,14 @@ public class EmployeeService {
       existingEmployee.setMiddleName(updatedEmployee.getMiddleName());
       existingEmployee.setLastName(updatedEmployee.getLastName());
       existingEmployee.setEmail(updatedEmployee.getEmail());
+      existingEmployee.setPhone(updatedEmployee.getPhone());
+      existingEmployee.setAddress(updatedEmployee.getAddress());
+      existingEmployee.setContractType(updatedEmployee.getContractType());
+      existingEmployee.setStartDate(updatedEmployee.getStartDate());
+      existingEmployee.setFinishDate(updatedEmployee.getFinishDate());
+      existingEmployee.setOngoing(updatedEmployee.getOngoing());
+      existingEmployee.setTimeBasis(updatedEmployee.getTimeBasis());
+      existingEmployee.setHours(updatedEmployee.getHours());
 
       return employeeRepository.save(existingEmployee);
     } else {
