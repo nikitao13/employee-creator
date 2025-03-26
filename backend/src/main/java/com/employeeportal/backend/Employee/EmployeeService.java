@@ -38,4 +38,8 @@ public class EmployeeService {
       throw new RuntimeException("Employee not found with id: " + id);
     }
   }
+
+  public void deleteEmployee(Long id) {
+    employeeRepository.deleteById(id);
+  }
 }
