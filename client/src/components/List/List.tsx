@@ -14,10 +14,16 @@ const List = () => {
     setSearchTerm(e.target.value);
   };
 
-  const filteredEmployees = employees?.filter((employee) => {
+  const filteredEmployeesByName = employees?.filter((employee) => {
     const nameToMatch = `${employee.firstName} ${employee.lastName}`;
     return nameToMatch.toLowerCase().includes(searchTerm.trim().toLowerCase());
   });
+
+  const totalPermanentEmployees = filteredEmployeesByName?.filter(
+    (employee) => employee.contractType === 'Permanent'
+  );
+
+  const totalEmployees = filteredEmployeesByName?.length;
 
   return (
     <div className={classes.container}>
@@ -42,9 +48,17 @@ const List = () => {
         />
       </div>
 
+      <div className={classes.employeeInsights}>
+        <p className={classes.totalEmployees}>{totalEmployees} employees</p>
+        <p>|</p>
+        <p className={classes.totalPermanentEmployees}>
+          {totalPermanentEmployees?.length} permanent
+        </p>
+      </div>
+
       <div className={classes.employees}>
-        {filteredEmployees && filteredEmployees.length > 0 ? (
-          filteredEmployees.map((employee) => (
+        {filteredEmployeesByName && filteredEmployeesByName.length > 0 ? (
+          filteredEmployeesByName.map((employee) => (
             <div key={employee.id} className={classes.employeeItem}>
               <ListItem item={employee} />
             </div>
