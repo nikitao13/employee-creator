@@ -43,8 +43,10 @@ export default function Form() {
     if (!id) {
       addEmployee(data, {
         onSuccess: () => navigate('/'),
-        onError: (error) => {
-          alert('Error creating employee: ' + error);
+        onError: () => {
+          alert(
+            'Error creating employee, ensure email address & phone number are unique.'
+          );
         },
       });
     } else {
@@ -52,8 +54,10 @@ export default function Form() {
         { id: Number(id), data: { ...data, id: Number(id) } },
         {
           onSuccess: () => navigate('/'),
-          onError: (error) => {
-            alert('Error updating employee: ' + error);
+          onError: () => {
+            alert(
+              'Error updating employee, ensure email address & phone number are unique.'
+            );
           },
         }
       );
@@ -87,19 +91,40 @@ export default function Form() {
           <label htmlFor="firstName">First name</label>
           <input
             placeholder="John"
-            {...register('firstName', { required: true })}
+            {...register('firstName', {
+              required: 'First name is required',
+              pattern: {
+                value: /^[A-Za-z\s]+$/,
+                message: 'Only letters are allowed',
+              },
+            })}
           />
-          {errors.firstName && <span>First name is required</span>}
+          {errors.firstName && <span>{errors.firstName.message}</span>}
 
           <label htmlFor="middleName">Middle name (if applicable)</label>
-          <input placeholder="-" {...register('middleName')} />
+          <input
+            placeholder="-"
+            {...register('middleName', {
+              pattern: {
+                value: /^[A-Za-z\s]+$/,
+                message: 'Only letters are allowed',
+              },
+            })}
+          />
+          {errors.middleName && <span>{errors.middleName.message}</span>}
 
           <label htmlFor="lastName">Last name</label>
           <input
             placeholder="Smith"
-            {...register('lastName', { required: true })}
+            {...register('lastName', {
+              required: 'Last name is required',
+              pattern: {
+                value: /^[A-Za-z\s]+$/,
+                message: 'Only letters are allowed',
+              },
+            })}
           />
-          {errors.lastName && <span>Last name is required</span>}
+          {errors.lastName && <span>{errors.lastName.message}</span>}
         </div>
 
         <div className={classes.contactDetails}>
@@ -119,9 +144,15 @@ export default function Form() {
             className={classes.phone}
             placeholder="0412 345 678"
             type="tel"
-            {...register('phone', { required: true })}
+            {...register('phone', {
+              required: 'Phone number is required',
+              pattern: {
+                value: /^[\d\s]+$/,
+                message: 'Only numbers and spaces are allowed',
+              },
+            })}
           />
-          {errors.phone && <span>Phone number is required</span>}
+          {errors.phone && <span>{errors.phone.message}</span>}
 
           <label htmlFor="address">Residential Address</label>
           <input
