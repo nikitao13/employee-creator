@@ -66,5 +66,9 @@
     padding: 0.5rem;
     background-color: v.$light-grey;
     width: 30%;
+
+    @media (max-width: 768px) {
+      width: 60%;
+    }
   }
 }

@@ -13,7 +13,9 @@ const ListItem = ({ item }: ListItemProps) => {
   const { mutate: deleteEmployee } = useDeleteEmployee();
 
   const handleDelete = () => {
-    deleteEmployee(item.id);
+    if (window.confirm('Are you sure you want to delete this employee?')) {
+      deleteEmployee(item.id);
+    }
   };
 
   return (
