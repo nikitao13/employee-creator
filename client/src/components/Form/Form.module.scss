@@ -103,7 +103,6 @@ form {
 
 .contractP {
   font-weight: 500;
-  margin-top: 1rem;
 }
 
 .contractLabel,
@@ -120,12 +119,16 @@ form {
   }
 }
 
+.checkboxLabel {
+  margin-bottom: 0.25rem;
+}
+
 .dateField {
   width: max-content;
 }
 
 .finishDateField {
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem;
 }
 
 .hours {
