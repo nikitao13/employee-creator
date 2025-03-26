@@ -7,6 +7,10 @@
   flex-direction: column;
   justify-self: center;
   margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 }
 
 form {
@@ -32,6 +36,10 @@ form {
 
     input {
       width: 30%;
+
+      @media (max-width: 768px) {
+        width: 65%;
+      }
     }
   }
 
@@ -42,6 +50,10 @@ form {
 
     .email {
       width: 40%;
+
+      @media (max-width: 768px) {
+        width: 65%;
+      }
     }
   }
 }
@@ -69,10 +81,18 @@ form {
 
 .phone {
   width: 15%;
+
+  @media (max-width: 768px) {
+    width: 35%;
+  }
 }
 
 .address {
   width: 40%;
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 }
 
 .disclaimer {
@@ -86,7 +106,8 @@ form {
   margin-top: 1rem;
 }
 
-.contractLabel, .checkboxLabel {
+.contractLabel,
+.checkboxLabel {
   display: flex;
   gap: 0.5rem;
   align-items: center;
@@ -114,5 +135,7 @@ form {
 .hoursField {
   width: 10%;
   margin-top: 0.5rem;
+  @media (max-width: 768px) {
+    width: 20%;
+  }
 }
-

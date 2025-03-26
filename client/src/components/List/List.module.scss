@@ -7,6 +7,12 @@
   flex-direction: column;
   justify-self: center;
   padding-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    width: 90%;
+    font-size: 0.8rem;
+    padding-bottom: 1rem;
+  }
 }
 
 .addEmployeePanel {
@@ -19,6 +25,14 @@
   button {
     padding: 0.6rem 1.2rem;
     background-color: v.$light-grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.65rem;
+    }
   }
 }
 
@@ -30,4 +44,8 @@
 .buttonsField {
   display: flex;
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    gap: 0.5rem;
+  }
 }

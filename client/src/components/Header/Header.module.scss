@@ -9,6 +9,10 @@
   justify-content: center;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   user-select: none;
+
+  @media (max-width: 768px) {
+    align-items: flex-start;
+  }
 }
 
 .content {
@@ -19,8 +23,17 @@
   gap: 1rem;
   padding-bottom: 1rem;
 
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 1rem;
+  }
+
   h1 {
     font-size: 2rem;
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
   }
 
   a {

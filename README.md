@@ -12,9 +12,29 @@
 
 #### - Create new employee data
 
+#### - Download employee data as JSON
+
 ---
 
 ### Running the application:
+
+```bash
+cd client
+npm i
+npm run dev
+```
+
+```bash
+cd backend
+mvn spring-boot:run
+```
+
+This will seed the database with some pre-filled data. To remove/edit the mock data, delete/edit the EmployeeSeeder.java file.
+
+---
+
+### Future Updates
+#### - Implement AWS S3 cloud storage for employee profile images
 
 ---
 
