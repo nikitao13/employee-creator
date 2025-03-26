@@ -26,6 +26,8 @@ npm i
 npm run dev
 ```
 
+Input MySQL credentials in application.properties.
+
 ```bash
 cd backend
 mvn spring-boot:run
