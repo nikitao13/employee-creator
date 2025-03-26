@@ -12,4 +12,5 @@ export interface Employee {
   ongoing: boolean;
   timeBasis: string;
   hours: number;
+  fullName: string;
 }

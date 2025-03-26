@@ -14,6 +14,8 @@
 
 #### - Download employee data as JSON
 
+#### - Filter employee data with searchbar
+
 ---
 
 ### Running the application:
@@ -34,6 +36,7 @@ This will seed the database with some pre-filled data. To remove/edit the mock d
 ---
 
 ### Future Updates
+
 #### - Implement AWS S3 cloud storage for employee profile images
 
 ---

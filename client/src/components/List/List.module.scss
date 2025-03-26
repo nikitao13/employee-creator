@@ -49,3 +49,22 @@
     gap: 0.5rem;
   }
 }
+
+.noResults {
+  font-size: 0.85rem;
+}
+
+.searchBar {
+  input {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #3f4756;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.5rem;
+    background-color: v.$light-grey;
+    width: 30%;
+  }
+}
