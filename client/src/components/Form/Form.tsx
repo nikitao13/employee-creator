@@ -18,6 +18,7 @@ type Inputs = {
   contractType: string;
   startDate: string;
   finishDate: string;
+  ongoing: boolean;
   timeBasis: string;
   hours: number;
 };
@@ -65,6 +66,7 @@ export default function Form() {
   };
 
   const startVal = watch('startDate');
+  const ongoing = watch('ongoing');
 
   useEffect(() => {
     if (id && employees) {
@@ -157,7 +159,7 @@ export default function Form() {
           <input
             className={classes.dateField}
             type="date"
-            {...register('startDate', { required: true })}
+            {...register('startDate', { required: 'Start date is required' })}
           />
           {errors.startDate && <span>{errors.startDate.message}</span>}
 
@@ -166,21 +168,31 @@ export default function Form() {
             className={`${classes.dateField} ${classes.finishDateField}`}
             type="date"
             {...register('finishDate', {
-              required: true,
               validate: (finishVal) => {
-                if (!startVal) {
+                if (finishVal && ongoing) {
+                  return 'Cannot have a finish date if ongoing';
+                }
+                if (!ongoing && !finishVal) {
+                  return 'Finish date is required if not ongoing';
+                }
+                if (!startVal || !finishVal) {
                   return true;
                 }
                 const startDate = new Date(startVal);
                 const finishDate = new Date(finishVal);
                 if (finishDate < startDate) {
-                  return 'Finish date cannot be before the start date.';
+                  return 'Finish date cannot be before the start date';
                 }
                 return true;
               },
             })}
           />
           {errors.finishDate && <span>{errors.finishDate.message}</span>}
+
+          <label className={classes.checkboxLabel}>
+            <input type="checkbox" {...register('ongoing')} />
+            No end date
+          </label>
 
           <h3 className={classes.contractP}>
             Is this on a full-time or part-time basis?
@@ -211,10 +223,11 @@ export default function Form() {
             <input
               className={classes.hoursField}
               type="number"
+              min="1"
               {...register('hours', { required: true })}
             />
-            {errors.hours && <span>Hours per week is required</span>}
           </div>
+          {errors.hours && <span>Hours per week is required</span>}
         </div>
 
         <Buttons onCancel={cancel} />

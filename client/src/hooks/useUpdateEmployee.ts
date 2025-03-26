@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
 import { Employee } from '../types/Employee';
 
 type UpdatePayload = {
@@ -6,20 +7,21 @@ type UpdatePayload = {
   data: Employee;
 };
 
-async function updateEmployee({ id, data }: UpdatePayload): Promise<Employee> {
-  const response = await fetch(`http://localhost:8080/api/employees/${id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to update employee');
-  }
-  return response.json();
-}
+const updateEmployee = async ({
+  id,
+  data,
+}: UpdatePayload): Promise<Employee> => {
+  const { data: updatedEmployee } = await axios.put<Employee>(
+    `http://localhost:8080/api/employees/${id}`,
+    data,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+  return updatedEmployee;
+};
 
 export function useUpdateEmployee() {
   const queryClient = useQueryClient();

@@ -1,10 +1,10 @@
 import { Employee } from '../types/Employee';
 
 const calculateWorkingTime = (employee: Employee) => {
-  const currentDate = new Date();
   const startDate = new Date(employee.startDate);
+  const endDate = employee.ongoing ? new Date() : new Date(employee.finishDate);
 
-  const diff = Math.abs(currentDate.getTime() - startDate.getTime());
+  const diff = Math.abs(endDate.getTime() - startDate.getTime());
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
   if (days >= 365) {

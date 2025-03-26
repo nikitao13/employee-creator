@@ -1,13 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import { Employee } from '../types/Employee';
 
 const fetchEmployees = async (): Promise<Employee[]> => {
-  const response = await fetch('http://localhost:8080/api/employees');
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch employees');
-  }
-  return response.json();
+  const { data } = await axios.get<Employee[]>(
+    'http://localhost:8080/api/employees'
+  );
+  return data;
 };
 
 export const useEmployees = () => {

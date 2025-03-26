@@ -4,12 +4,7 @@ import { useEmployees } from '../../hooks/useEmployees';
 import ListItem from './ListItem/ListItem';
 
 const List = () => {
-  const { data: employees, isSuccess } = useEmployees();
-
-  if (isSuccess) {
-    console.log(employees);
-  }
-
+  const { data: employees } = useEmployees();
   const navigate = useNavigate();
 
   return (

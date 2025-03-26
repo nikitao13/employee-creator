@@ -9,6 +9,7 @@ export interface Employee {
   contractType: string;
   startDate: string;
   finishDate: string;
+  ongoing: boolean;
   timeBasis: string;
   hours: number;
 }

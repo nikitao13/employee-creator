@@ -1,13 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
 
 const deleteEmployee = async (id: number): Promise<void> => {
-  const response = await fetch(`http://localhost:8080/api/employees/${id}`, {
-    method: 'DELETE',
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to delete employee');
-  }
+  await axios.delete(`http://localhost:8080/api/employees/${id}`);
 };
 
 export const useDeleteEmployee = () => {

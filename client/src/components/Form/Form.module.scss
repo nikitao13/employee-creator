@@ -83,13 +83,15 @@ form {
 
 .contractP {
   font-weight: 500;
+  margin-top: 1rem;
 }
 
-.contractLabel {
+.contractLabel, .checkboxLabel {
   display: flex;
   gap: 0.5rem;
   align-items: center;
   font-size: 0.95rem;
+  margin-left: 0.25rem;
 
   input {
     transform: scale(1.4);
